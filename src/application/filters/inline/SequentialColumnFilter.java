@@ -26,18 +26,20 @@ public class SequentialColumnFilter implements LotteryFilter {
             possibleSequences.put(column, columnNumbers);
         });
 
-        for(List<Integer> possibleSeq : possibleSequences.values()) {
+        for (List<Integer> possibleSeq : possibleSequences.values()) {
             possibleSeq.sort(Integer::compareTo);
 
             int count = 1;
-            for(int i = 0; i < possibleSeq.size() - 1; i++) 
-                count = (possibleSeq.get(i) + 1 == possibleSeq.get(i + 1)) ? count + 1 : 1;
+            for (int i = 0; i < possibleSeq.size() - 1; i++)
+                count = (possibleSeq.get(i) + 10 == possibleSeq.get(i + 1)) ? count + 1 : 1;
 
-            if(count >= sequenceLength)
+            if (count == sequenceLength)
+                return true;
+            else if (count > sequenceLength)
                 return false;
         }
 
-        return true;
+        return false;
     }
 
     private int getColumnPosition(int number) {
