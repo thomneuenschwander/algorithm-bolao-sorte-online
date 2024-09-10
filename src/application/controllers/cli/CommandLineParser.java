@@ -31,6 +31,11 @@ public class CommandLineParser {
         Integer columns = null, y = null;
         Integer rows = null, x = null;
 
+        Integer consecutiveAnchorNumberAmount = null;
+        Integer sequenceLengthColumn = null;
+        Integer sequenceLengthRow = null;
+        Integer anchorNumberAmount = null;
+
         for (int i = 0; i < args.length; i++) {
             switch (args[i]) {
                 case "-n":
@@ -119,6 +124,26 @@ public class CommandLineParser {
                     x = Integer.parseInt(args[++i]);
                     break;
 
+                case "-can":
+                case "--consecutive-anchor-number":
+                    consecutiveAnchorNumberAmount = Integer.parseInt(args[++i]);
+                    break;
+
+                case "-scol":
+                case "--sequence-length-column":
+                    sequenceLengthColumn = Integer.parseInt(args[++i]);
+                    break;
+
+                case "-srow":
+                case "--sequence-length-row":
+                    sequenceLengthRow = Integer.parseInt(args[++i]);
+                    break;
+
+                case "-an":
+                case "--anchor-number-amount":
+                    anchorNumberAmount = Integer.parseInt(args[++i]);
+                    break;
+
                 default:
                     System.out.println("Unknown argument: " + args[i]);
                     break;
@@ -144,6 +169,11 @@ public class CommandLineParser {
                 .columns(columns, y)
                 .rows(rows, x)
 
+                .consecutiveAnchorNumberAmount(consecutiveAnchorNumberAmount)
+                .sequenceLengthColumn(sequenceLengthColumn)
+                .sequenceLengthRow(sequenceLengthRow)
+                .anchorNumberAmount(anchorNumberAmount)
+
                 .build();
     }
 
@@ -164,7 +194,10 @@ public class CommandLineParser {
         System.out.println("\t-col <columns> \\");
         System.out.println("\t-y <y> \\");
         System.out.println("\t-row <rows> \\");
-        System.out.println("\t-x <x>");
+        System.out.println("\t-x <x> \\");
+        System.out.println("\t-can <consecutiveAnchorNumberAmount> \\");
+        System.out.println("\t-scol <sequenceLengthColumn> \\");
+        System.out.println("\t-srow <sequenceLengthRow> \\");
+        System.out.println("\t-an <anchorNumberAmount>");
     }
-    
 }

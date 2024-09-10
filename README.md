@@ -43,6 +43,16 @@ java -jar cli-bolao-sorte.jar [options]
 - `-row <rows>`: Define o número de sequencias de linhas de tamanho.
 - `-x <x>`: Quantidade de numeros na(s) sequencia(s) de linhas(s).
 
+#### Sequential Filters
+
+- `-srow <sequenceLengthRow>`: Define o tamanho da sequência de números consecutivos em uma linha.
+- `-scol <sequenceLengthColumn>`: Define o tamanho da sequência de números consecutivos em uma coluna.
+
+#### Consecutive Anchor Number Filters
+
+- `-an <anchorNumberAmount>`: Define a quantidade de números âncoras permitidos em uma combinação.
+- `-can <consecutiveAnchorNumberAmount>`: Define a quantidade de números âncoras consecutivos (em linhas ou colunas).
+
 ## Exemplos de uso
 
 
@@ -98,6 +108,18 @@ java -jar cli-bolao-sorte.jar -n "quina" -g "12,34,67,8,19,28,45,23,39,2,78,51,4
 
 ```bash
 java -jar cli-bolao-sorte.jar -n "quina" -g "12,34,67,8,19,28,45,23,39,2,78,51,4,32,63,7;15,77,3,68,49,31,24,55,10,43,5,29,60;21,14,6,59,35,20,9,79,26,47,1,38,75,48,56,64;25,53,11,37,70,41,62,40,52,30,58,76,16,50,66;33,17,61,46,36,22,27,74,57" -p true -e 3 -smq true -cqn 4 -col 1 -y 2 -rc 1
+```
+
+### 10. Deixar apenas combinações com uma sequência de linhas de 2 números consecutivos
+
+```bash
+java -jar cli-bolao-sorte.jar -n "quina" -g "12,34,67,8,19,28,45,23,39,2,78,51,4,32,63,7;15,77,3,68,49,31,24,55,10,43,5,29,60;21,14,6,59,35,20,9,79,26,47,1,38,75,48,56,64;25,53,11,37,70,41,62,40,52,30,58,76,16,50,66;33,17,61,46,36,22,27,74,57" --sequence-length-row 2 -rc 1
+```
+
+### 11. Deixar apenas combinações com exatamente 2 números âncoras e com uma sequencia de 3 numeros consecultivos em coluna
+
+```bash
+java -jar cli-bolao-sorte.jar -n "quina" -g "12,34,67,8,19,28,45,23,39,2,78,51,4,32,63,7;15,77,3,68,49,31,24,55,10,43,5,29,60;21,14,6,59,35,20,9,79,26,47,1,38,75,48,56,64;25,53,11,37,70,41,62,40,52,30,58,76,16,50,66;33,17,61,46,36,22,27,74,57" --anchor-number-amount 2 --sequence-length-column 3 -rc 1
 ```
 
 ## Download

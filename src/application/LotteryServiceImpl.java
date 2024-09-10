@@ -16,8 +16,12 @@ import src.application.filters.PrimeFilter;
 import src.application.filters.fourquadrants.FourQuadrantSpecificFilter;
 import src.application.filters.fourquadrants.FourQuadrantsCovaregeFilter;
 import src.application.filters.fourquadrants.FourQuadrantsQuantityMapFilter;
+import src.application.filters.inline.AnchorNumberFilter;
 import src.application.filters.inline.ColumnFilter;
+import src.application.filters.inline.ConsecutiveAnchorNumberFilter;
 import src.application.filters.inline.RowFilter;
+import src.application.filters.inline.SequentialColumnFilter;
+import src.application.filters.inline.SequentialRowFilter;
 import src.application.filters.miniquadrants.ExclusiveMiniQuadrantsFilter;
 import src.application.filters.miniquadrants.SharedMiniQuadrantsFilter;
 import src.domain.Lottery;
@@ -85,7 +89,7 @@ public class LotteryServiceImpl implements LotteryService {
 
         if (request.getExclusivesMiniQuadrants() != null && request.getExclusivesMiniQuadrants())
             filters.add(new ExclusiveMiniQuadrantsFilter(lottery.getMiniQuadrantsNumbers()));
-        else if(request.getSharedMiniquadrants() != null && request.getSharedMiniquadrants())
+        else if (request.getSharedMiniquadrants() != null && request.getSharedMiniquadrants())
             filters.add(new SharedMiniQuadrantsFilter(lottery.getMiniQuadrantsNumbers()));
 
         if (request.getCoveregeQuadrantNumber() != null)
@@ -95,7 +99,7 @@ public class LotteryServiceImpl implements LotteryService {
         else if (request.getSpecificFourQuadrants() != null)
             filters.add(new FourQuadrantSpecificFilter(lottery.getFourQuadrantsNumbers(),
                     request.getSpecificFourQuadrants()));
-                    
+
         else if (request.getQuadrantOccurrenceMap() != null && !request.getQuadrantOccurrenceMap().isEmpty()
                 && request.getQuadrantOccurrenceMap().size() <= 4)
             filters.add(new FourQuadrantsQuantityMapFilter(lottery.getFourQuadrantsNumbers(),
@@ -105,6 +109,16 @@ public class LotteryServiceImpl implements LotteryService {
             filters.add(new ColumnFilter(request.getColumns(), request.getY()));
         if (request.getRows() != null && request.getX() != null)
             filters.add(new RowFilter(request.getRows(), request.getX()));
+
+        if (request.getAnchorNumberAmount() != null)
+            filters.add(new AnchorNumberFilter(request.getAnchorNumberAmount()));
+        if (request.getSequenceLengthColumn() != null)
+            filters.add(new SequentialColumnFilter(request.getSequenceLengthColumn()));
+
+        if (request.getConsecutiveAnchorNumberAmount() != null)
+            filters.add(new ConsecutiveAnchorNumberFilter(request.getConsecutiveAnchorNumberAmount()));
+        if (request.getSequenceLengthRow() != null)
+            filters.add(new SequentialRowFilter(request.getSequenceLengthRow()));
 
         return filters;
     }

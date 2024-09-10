@@ -14,6 +14,7 @@ public class LotteryRequest {
     private Boolean removePrimes;
 
     private Boolean exclusivesMiniQuadrants;
+    private Boolean sharedMiniquadrants;
 
     private Integer coveregeQuadrantNumber;
     private Set<Integer> specificFourQuadrants;
@@ -24,7 +25,10 @@ public class LotteryRequest {
     private Integer rows;
     private Integer x;
 
-    private Boolean sharedMiniquadrants;
+    private Integer consecutiveAnchorNumberAmount;
+    private Integer sequenceLengthColumn;
+    private Integer sequenceLengthRow;
+    private Integer anchorNumberAmount;
 
     private LotteryRequest(Builder builder) {
         this.lotteryName = builder.lotteryName;
@@ -47,6 +51,10 @@ public class LotteryRequest {
         this.rows = builder.rows;
         this.x = builder.x;
 
+        this.consecutiveAnchorNumberAmount = builder.consecutiveAnchorNumberAmount;
+        this.sequenceLengthColumn = builder.sequenceLengthColumn;
+        this.sequenceLengthRow = builder.sequenceLengthRow;
+        this.anchorNumberAmount = builder.anchorNumberAmount;
     }
 
     public String getLotteryName() {
@@ -108,6 +116,22 @@ public class LotteryRequest {
     public Integer getX() {
         return x;
     }
+    
+    public Integer getConsecutiveAnchorNumberAmount() {
+        return consecutiveAnchorNumberAmount;
+    }
+
+    public Integer getSequenceLengthColumn() {
+        return sequenceLengthColumn;
+    }
+
+    public Integer getSequenceLengthRow() {
+        return sequenceLengthRow;
+    }
+
+    public Integer getAnchorNumberAmount() {
+        return anchorNumberAmount;
+    }
 
     public static class Builder {
         private String lotteryName;
@@ -127,6 +151,11 @@ public class LotteryRequest {
 
         private Integer columns, y;
         private Integer rows, x;
+
+        private Integer consecutiveAnchorNumberAmount;
+        private Integer sequenceLengthColumn;
+        private Integer sequenceLengthRow;
+        private Integer anchorNumberAmount;
 
         public Builder randomChoice(Integer randomChoice) {
             this.randomChoice = randomChoice;
@@ -192,6 +221,26 @@ public class LotteryRequest {
         public Builder rows(Integer rows, Integer numberPerRow) {
             this.rows = rows;
             this.x = numberPerRow;
+            return this;
+        }
+
+        public Builder consecutiveAnchorNumberAmount(Integer consecutiveAnchorNumberAmount) {
+            this.consecutiveAnchorNumberAmount = consecutiveAnchorNumberAmount;
+            return this;
+        }
+
+        public Builder sequenceLengthColumn(Integer sequenceLengthColumn) {
+            this.sequenceLengthColumn = sequenceLengthColumn;
+            return this;
+        }
+
+        public Builder sequenceLengthRow(Integer sequenceLengthRow) {
+            this.sequenceLengthRow = sequenceLengthRow;
+            return this;
+        }
+
+        public Builder anchorNumberAmount(Integer anchorNumberAmount) {
+            this.anchorNumberAmount = anchorNumberAmount;
             return this;
         }
 
